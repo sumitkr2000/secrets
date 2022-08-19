@@ -1,0 +1,29 @@
+body {
+  background-color: #E8ECEF;
+  text-align: center;
+}
+
+.row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  margin-top: 100px;
+}
+
+.form-control {
+  margin-bottom: 7px;
+}
+
+.centered {
+    margin-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
