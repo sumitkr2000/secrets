@@ -10,6 +10,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 
+const port = process.env.port || 3000;
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,7 +27,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB");
+mongoose.connect(process.env.ATLAS_URI);
 
 const userSchema = new mongoose.Schema({
     email: String,
@@ -174,6 +175,6 @@ app.post("/login", function(req, res) {
     })
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
     console.log("Server started at port 3000");
 });
