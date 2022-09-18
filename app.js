@@ -11,8 +11,6 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const MongoStore = require("connect-mongo")(session);
 
-app.set("trust proxy", 1);
-
 const port = process.env.port || 3000;
 const app = express();
 
@@ -23,10 +21,6 @@ app.set("view engine", "ejs");
 
 app.use(
   session({
-    cookie: {
-      secure: true,
-      maxAge: 60000,
-    },
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
