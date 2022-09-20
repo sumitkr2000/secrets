@@ -9,7 +9,6 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-const MongoStore = require("connect-mongo")(session);
 
 const port = process.env.port || 3000;
 const app = express();
@@ -23,8 +22,7 @@ app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,
-    store: new MongoStore(),
+    saveUninitialized: false
   })
 );
 
