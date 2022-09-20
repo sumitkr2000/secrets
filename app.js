@@ -62,7 +62,7 @@ passport.use(
     {
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
-      callbackURL: "http://localhost:3000/auth/google/secrets",
+      callbackURL: "https://serene-ravine-32637.herokuapp.com/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
