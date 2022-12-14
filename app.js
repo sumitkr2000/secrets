@@ -13,14 +13,13 @@ const findOrCreate = require("mongoose-findorcreate");
 const port = process.env.port || 3000;
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: process.env.secret,
     resave: false,
     saveUninitialized: false,
   })
@@ -41,7 +40,7 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
-const User = mongoose.model("User", userSchema);
+const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
@@ -62,7 +61,7 @@ passport.use(
     {
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
-      callbackURL: "https://serene-ravine-32637.herokuapp.com/auth/google/secrets",
+      callbackURL: "http://localhost:3000/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
